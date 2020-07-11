@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Qustion;
+use App\Quiz;
 
 class Quiz extends Model
 {
@@ -11,5 +12,9 @@ class Quiz extends Model
 
     public function questions(){
         return $this->hasMany(Question::class);
+    }
+
+    public function storeQuiz($data){
+        return Quiz::create($data);
     }
 }
