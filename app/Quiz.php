@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Qustion;
 use App\Quiz;
 
-class Quiz extends Model
+class Quiz extends Model 
 {
     protected $fillable = ['name','description','minutes'];
 

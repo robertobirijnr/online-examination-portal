@@ -18,7 +18,7 @@
                 </div>
                 <div class="module-body">
                     <div class="control-group">
-                        <label class="control-label" >Quiz name</label>
+                        <label class="control-label" >Subject name</label>
                         <div class="controls">
                             <input type="text" name="name" class="span8" placeholder="Examination subject name" value="{{old('name')}}"><br>
                             @error('name')
@@ -30,7 +30,7 @@
                         <label class="control-label" >Quiz Description</label>
                         <div class="controls">
                            <textarea name="description" class="span8">
-                               {{old('description')}}
+                               
                            </textarea><br>
                             @error('description')
                             <span class="invalid-feedback" role="alert">
