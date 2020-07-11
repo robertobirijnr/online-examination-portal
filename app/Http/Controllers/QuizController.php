@@ -14,7 +14,8 @@ class QuizController extends Controller
      */
     public function index()
     {
-        //
+        $quizzes = (new Quiz)->allQuiz();
+        return view('backend.quiz.index',compact('quizzes'));
     }
 
     /**
@@ -61,7 +62,8 @@ class QuizController extends Controller
      */
     public function edit($id)
     {
-        //
+        $quiz = (new Quiz)->getQuizById($id);
+        return view('backend.quiz.edit',compact('quiz') );
     }
 
     /**
@@ -73,7 +75,9 @@ class QuizController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $this->validateForm($request);
+        $quiz = (new Quiz)->updateQuiz($data,$id);
+        return redirect(route('quiz.index'))->with('message','Quiz updated successfully');
     }
 
     /**
@@ -84,7 +88,8 @@ class QuizController extends Controller
      */
     public function destroy($id)
     {
-        //
+        (new Quiz)->deleteQuiz();
+        return redirect(route('quiz.index'))->with('message','Quiz Deleted successfully');
     }
 
     public function validateForm($request){
