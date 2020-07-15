@@ -1,8 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Quiz;
+use App\Answer;
+use App\Qustions;
 
 use Illuminate\Http\Request;
+
+
+
 
 class QustionController extends Controller
 {
@@ -34,7 +40,10 @@ class QustionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data=$this->validateForm($request);
+        $question = (new Qustions) -> storeQuestion($data);
+        $Answer = (new Answer) -> storeAnswer($data,$question);
+        return redirect()-> route('question.create')->with('message','one question created successfully');
     }
 
     /**
@@ -80,5 +89,15 @@ class QustionController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function validateForm($request){
+        return $this->validate($request,[
+            'quiz' => 'required',
+            'question' => 'required|min:3',
+            'options'=>'bail|required|array|min:3',
+            'options.*'=>'bail|required|string|distinct',
+            'correct_answer'=>'required'
+        ]);
     }
 }

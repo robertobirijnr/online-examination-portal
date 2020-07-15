@@ -11,7 +11,7 @@
                 <div class="alert alert-success">{{Session::get('message')}}</div>
             @endif
 
-            <form action="{{route('quiz.store')}}" method="POST">@csrf
+            <form action="{{route('question.store')}}" method="POST">@csrf
             <div class="module">
                 <div class="module-head">
                     <h3>Set Questions</h3>
@@ -39,27 +39,26 @@
                                 <strong >{{ $message }}</strong>
                             </span>
                         @enderror
-                        </div>
-                    
-                </div>
-                <div class="control-group">
+                        </div> 
+                 </div>
+                 <div class="control-group">
                     <label class="control-label" >Options</label>
                     <div class="controls">
                         @for ($i = 0; $i < 4; $i++)
-                        <input type="text" name="options[]" class="span7" placeholder="options{{$i+1}}" required><br>
-                        <input name="correct_answer" type="radio">
+                        <input type="text" name="options[]" class="span7 @error('name') border-red @enderror" placeholder="option{{$i+1}}" required >
+                        <input type="radio" name="correct_answer" value="{{$i}}"> <span>Is correct answer</span>
                         @endfor
+                    </div>
                         @error('question')
                         <span class="invalid-feedback" role="alert">
                             <strong >{{ $message }}</strong>
                         </span>
                     @enderror
-                    </div>
-                    <div class="controls">
-                       <button type="submit" class="btn btn-success">Submit</button>
-                    </div>
-                
-            </div>
+                     
+                 </div>
+                 <div class="controls">
+                    <button type="submit" class="btn btn-success">Submit</button>
+                 </div>
             </div>
         </form>
         </div>
